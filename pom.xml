@@ -4,6 +4,10 @@
 	<artifactId>yan-basics</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
+
+	<modules>
+		<module>spring-boot-mybatis-yan</module>
+	</modules>
 	
 	<properties>
 		<poi.version>4.1.1</poi.version>
