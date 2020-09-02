@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * application - spring boot启动类
- * @author fenrir
+ * @author master-yan
  *
  */
 @SpringBootApplication

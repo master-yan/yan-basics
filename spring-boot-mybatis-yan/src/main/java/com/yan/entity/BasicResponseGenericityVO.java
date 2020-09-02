@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * vo - 通用返回对象(泛型)
- * @author fenrir
+ * @author master-yan
  */
 @Data
 public class BasicResponseGenericityVO <T> {

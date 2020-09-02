@@ -10,7 +10,7 @@ import com.yan.service.BookService;
 
 /**
  * service - 书本管理
- * @author fenrir
+ * @author master-yan
  *
  */
 @Service

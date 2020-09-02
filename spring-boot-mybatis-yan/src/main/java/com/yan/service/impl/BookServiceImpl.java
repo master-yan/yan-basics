@@ -19,7 +19,7 @@ import com.yan.util.Utils;
 
 /**
  * service - 书本管理
- * @author fenrir
+ * @author master-yan
  *
  */
 @Service

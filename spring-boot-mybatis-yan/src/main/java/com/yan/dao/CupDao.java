@@ -13,7 +13,7 @@ import com.yan.sql.CupSql;
 
 /**
  * dao - 杯子管理
- * @author fenrir
+ * @author master-yan
  *
  */
 public interface CupDao {

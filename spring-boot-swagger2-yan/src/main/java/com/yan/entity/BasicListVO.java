@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * vo - 列表内容
- * @author fenrir
+ * @author master-yan
  */
 @ApiModel(value = "列表内容", description = "这是查询列表的固定返回值的列表内容")
 @AllArgsConstructor

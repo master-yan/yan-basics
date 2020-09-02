@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * vo - 杯子
- * @author fenrir
+ * @author master-yan
  *
  */
 @AllArgsConstructor

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * vo - 书本
- * @author fenrir
+ * @author master-yan
  *
  */
 @ApiModel(value = "书本vo", description = "书本vo-后端用来跟前端交互的json模型")

@@ -22,7 +22,7 @@ import com.yan.service.CupService;
 
 /**
  * controller - 杯子管理
- * @author fenrir
+ * @author master-yan
  *
  */
 @RestController

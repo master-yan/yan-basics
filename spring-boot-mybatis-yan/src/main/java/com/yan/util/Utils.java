@@ -10,7 +10,7 @@ import com.yan.entity.BasicResponseGenericityVO;
 
 /**
  * 工具
- * @author fenrir
+ * @author master-yan
  *
  */
 public class Utils <T> {

@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * vo - 通用返回对象
- * @author fenrir
+ * @author master-yan
  */
 @ApiModel(value = "基础返回值", description = "这是api的基础返回值, 业务的返回值都会放到data中")
 @Data

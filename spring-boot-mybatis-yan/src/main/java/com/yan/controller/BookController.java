@@ -22,7 +22,7 @@ import com.yan.service.BookService;
 
 /**
  * controller - 书本管理
- * @author fenrir
+ * @author master-yan
  *
  */
 @RestController

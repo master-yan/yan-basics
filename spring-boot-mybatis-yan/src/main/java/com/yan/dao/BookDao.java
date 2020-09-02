@@ -12,7 +12,7 @@ import com.yan.entity.BookPO;
 
 /**
  * dao - 书本管理
- * @author fenrir
+ * @author master-yan
  *
  */
 public interface BookDao {

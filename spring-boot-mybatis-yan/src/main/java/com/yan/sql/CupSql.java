@@ -9,7 +9,7 @@ import com.yan.entity.CupPO;
 
 /**
  * sql - 杯子管理
- * @author fenrir
+ * @author master-yan
  *
  */
 public class CupSql {

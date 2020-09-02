@@ -26,6 +26,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 	havingValue比较获取到的属性值与havingValue给定的值是否相同,相同才加载配置
  * @EnableSwagger2 设置为swagger2配置
  * @EnableKnife4j 设置为knife4j配置
+ * @author master-yan
  */
 @Configuration
 @ConditionalOnProperty(name = "swagger.show", havingValue = "true")

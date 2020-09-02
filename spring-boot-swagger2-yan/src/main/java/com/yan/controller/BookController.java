@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * controller - 书本管理
- * @author fenrir
+ * @author master-yan
  *
  */
 @Api(tags = {"书本管理模块"})

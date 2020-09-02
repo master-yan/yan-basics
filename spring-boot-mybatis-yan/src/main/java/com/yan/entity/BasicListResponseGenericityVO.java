@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * vo - 基础的列表响应(泛型)
- * @author fenrir
+ * @author master-yan
  */
 @AllArgsConstructor
 @NoArgsConstructor

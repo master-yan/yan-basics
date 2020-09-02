@@ -4,7 +4,7 @@ import javax.validation.groups.Default;
 
 /**
  * 用来做参数验证的分组配置
- * @author fenrir
+ * @author master-yan
  *
  */
 public interface ValidationGroup {
