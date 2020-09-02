@@ -6,6 +6,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>spring-boot-mybatis-redis-yan</module>
 		<module>spring-boot-mybatis-yan</module>
 		<module>spring-boot-redis-yan</module>
 		<module>spring-boot-swagger2-yan</module>

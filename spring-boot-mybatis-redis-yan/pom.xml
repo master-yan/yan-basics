@@ -5,22 +5,27 @@
 		<artifactId>yan-basics</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<artifactId>spring-boot-redis-yan</artifactId>
+	<artifactId>spring-boot-mybatis-redis-yan</artifactId>
 	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -38,16 +43,21 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 	
 	<build>
-		<finalName>spring-boot-redis-yan</finalName>
+		<finalName>spring-boot-mybatis-redis-yan</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.yan.SpringBootRedisYanApplication</mainClass>
+					<mainClass>com.yan.SpringBootMybatisRedisYanApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>
