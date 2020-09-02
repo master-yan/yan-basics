@@ -1,15 +1,17 @@
 package com.yan.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yan.entity.BasicResponseVO;
-import com.yan.service.RedisKeyListService;
 
 /**
- * controller - 调用spring 封装的 redis key list api
+ * controller - 调用spring封装的redis(key list)
  * @author master-yan
  *
  */
@@ -17,8 +19,8 @@ import com.yan.service.RedisKeyListService;
 public class RedisKeyListController {
 
 	@Autowired
-	private RedisKeyListService redisKeyListService;
-	
+    private StringRedisTemplate stringRedisTemplate;
+
 	/**
 	 * 赋值, 从左侧开始插入
 	 */
@@ -27,7 +29,12 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO lpush() {
-		return redisKeyListService.lpush();
+		// 赋值(key, value...)
+		stringRedisTemplate.opsForList().leftPush("list", "1");
+		
+		stringRedisTemplate.opsForList().leftPushAll("list", "-1", "-2", "-3", "-4");
+		
+		return new BasicResponseVO(200, "OK", null);
 	}
 	
 	/**
@@ -38,7 +45,12 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO rpush() {
-		return redisKeyListService.rpush();
+		// 赋值(key, value...)
+		stringRedisTemplate.opsForList().rightPush("list", "2");
+		
+		stringRedisTemplate.opsForList().rightPushAll("list", "3", "4", "5", "6");
+		
+		return new BasicResponseVO(200, "OK", null);
 	}
 	
 	/**
@@ -49,7 +61,11 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO lset() {
-		return redisKeyListService.lset();
+		// 赋值, 指定下标(key, index, value)
+		// 如果下标存在了, 会覆盖, 下标从0开始,-1表示倒数第一个...
+		stringRedisTemplate.opsForList().set("list", 4, "一");
+		
+		return new BasicResponseVO(200, "OK", null);
 	}
 	
 	/**
@@ -60,7 +76,10 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO lpop() {
-		return redisKeyListService.lpop();
+		// 取值,从左开始取,取出后删除(key)
+		String data = stringRedisTemplate.opsForList().leftPop("list");
+		
+		return new BasicResponseVO(200, "OK", data);
 	}
 	
 	/**
@@ -71,7 +90,10 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO rpop() {
-		return redisKeyListService.rpop();
+		// 取值,从左开始取,取出后删除(key)
+		String data = stringRedisTemplate.opsForList().rightPop("list");
+		
+		return new BasicResponseVO(200, "OK", data);
 	}
 	
 	/**
@@ -82,9 +104,12 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO lrange() {
-		return redisKeyListService.lrange();
+		// 取值,指定范围获取(key, startIndex, stopIndex)
+		List<String> list = stringRedisTemplate.opsForList().range("list", 0, 10);
+		
+		return new BasicResponseVO(200, "OK", list);
 	}
-	
+
 	/**
 	 * 取值,指定下标获取
 	 */
@@ -93,7 +118,10 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO lindex() {
-		return redisKeyListService.lindex();
+		// 取值,指定下标获取(key, index)
+		String data = stringRedisTemplate.opsForList().index("list", 0);
+
+		return new BasicResponseVO(200, "OK", data);
 	}
 	
 	/**
@@ -104,9 +132,12 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO llen() {
-		return redisKeyListService.llen();
+		// 获取列表长度(key)
+		Long size = stringRedisTemplate.opsForList().size("list");
+
+		return new BasicResponseVO(200, "OK", size);
 	}
-	
+
 	/**
 	 * 删除列表中的数据
 	 */
@@ -115,9 +146,13 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO lrem() {
-		return redisKeyListService.lrem();
+		// 删除列表中的数据(key, count, value)
+		// 删除count个跟value一样的数据，count大于0从左到右查找, count小于o从右到左查找, count等于0删除全部
+		stringRedisTemplate.opsForList().remove("list", 0, "一");
+
+		return new BasicResponseVO(200, "OK", null);
 	}
-	
+
 	/**
 	 * 	删除，保留指定范围的数据
 	 */
@@ -126,7 +161,10 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO ltrim() {
-		return redisKeyListService.ltrim();
+		// 删除，保留指定范围的数据(key, startIndex, stopIndex)
+		stringRedisTemplate.opsForList().trim("list", 3, 5);
+
+		return new BasicResponseVO(200, "OK", null);
 	}
 	
 	/**
@@ -137,7 +175,11 @@ public class RedisKeyListController {
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseVO rpoplpush() {
-		return redisKeyListService.rpoplpush();
+		// 把源列表的最后一个数据, 剪切到目标列表的头部(source, target)
+		// target不存在会创建
+		stringRedisTemplate.opsForList().rightPopAndLeftPush("list", "list2");
+
+		return new BasicResponseVO(200, "OK", null);
 	}
 	
 }
