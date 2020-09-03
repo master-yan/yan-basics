@@ -14,5 +14,5 @@ public class SpringBootMybatisRedisYanApplication {
 	public static void main(String[] args) {
         SpringApplication.run(SpringBootMybatisRedisYanApplication.class, args);
     }
-	
+
 }
