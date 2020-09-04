@@ -25,7 +25,7 @@ public class CupSql {
 	public String queryAll(@Param("pageNumber") int pageNumber, @Param("pageSize") int pageSize) {
 		String sql = new StringBuffer("SELECT ")
 			.append(COLUMNS)
-			.append(" FROM cup LIMIT ")
+			.append(" FROM test_cup LIMIT ")
             .append(pageNumber)
             .append(",")
             .append(pageSize)
@@ -39,7 +39,7 @@ public class CupSql {
 	 * @return
 	 */
 	public String queryAllTotal() {
-		return "SELECT count(*) FROM cup";
+		return "SELECT count(*) FROM test_cup";
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class CupSql {
 	 * @return
 	 */
 	public String add(@Param("po") CupPO po) {
-		String sql = new StringBuffer("INSERT INTO cup (").append(COLUMNS).append(") values (")
+		String sql = new StringBuffer("INSERT INTO test_cup (").append(COLUMNS).append(") values (")
 			.append("'").append(po.getId()).append("',")
 	        .append("'").append(po.getCupName()).append("',")
 	        .append("'").append(po.getTotal()).append("',")
@@ -67,7 +67,7 @@ public class CupSql {
 	 * @return
 	 */
 	public String batchAdd(@Param("pos") List<CupPO> pos) {
-		StringBuffer sql = new StringBuffer("INSERT INTO cup (").append(COLUMNS).append(") values ");
+		StringBuffer sql = new StringBuffer("INSERT INTO test_cup (").append(COLUMNS).append(") values ");
 		
 		int size = pos.size();
 		
@@ -94,7 +94,7 @@ public class CupSql {
 	 * @return
 	 */
 	public String update(@Param("po") CupPO po) {
-		String sql = new StringBuffer("UPDATE cup SET")
+		String sql = new StringBuffer("UPDATE test_cup SET")
 	        .append(" cup_name = '").append(po.getCupName()).append("',")
 	        .append(" total = ").append(po.getTotal()).append(",")
 	        .append(" price = ").append(po.getPrice()).append(",")
@@ -111,7 +111,7 @@ public class CupSql {
 	 * @return
 	 */
 	public String batchUpdate(@Param("pos") List<CupPO> pos) {
-		StringBuffer sql = new StringBuffer("UPDATE cup SET");
+		StringBuffer sql = new StringBuffer("UPDATE test_cup SET");
 		
 		int size = pos.size();
 		
@@ -163,7 +163,7 @@ public class CupSql {
 	 * @return
 	 */
 	public String deleteById(@Param("id") Integer id) {
-		return new StringBuffer("DELETE FROM cup WHERE id = ").append(id).toString();
+		return new StringBuffer("DELETE FROM test_cup WHERE id = ").append(id).toString();
 	}
 	
 }

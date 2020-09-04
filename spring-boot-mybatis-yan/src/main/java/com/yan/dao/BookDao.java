@@ -26,7 +26,7 @@ public interface BookDao {
 	 * @return
 	 */
 	@Select(
-		"SELECT " + COLUMNS + " FROM book ORDER BY added_time DESC LIMIT #{pageNumber},#{pageSize}"
+		"SELECT " + COLUMNS + " FROM test_book ORDER BY creation_time DESC LIMIT #{pageNumber},#{pageSize}"
 	)
 	List<BookPO> queryAll(@Param("pageNumber") int pageNumber, @Param("pageSize") int pageSize);
 	
@@ -34,7 +34,7 @@ public interface BookDao {
 	 * 查询总条数
 	 * @return
 	 */
-	@Select("SELECT count(*) FROM book")
+	@Select("SELECT count(*) FROM test_book")
 	long queryAllTotal();
 	
 	/**
@@ -43,7 +43,7 @@ public interface BookDao {
 	 * @return
 	 */
 	@Insert(
-		"INSERT INTO book (" + COLUMNS + 
+		"INSERT INTO test_book (" + COLUMNS + 
 		") VALUES (#{id},#{bookName},#{author},#{total},#{price},#{introduction},#{creationTime},#{updatedTime})"
 	)
 	int add(BookPO po);
@@ -55,7 +55,7 @@ public interface BookDao {
 	 */
 	@Insert(
 		"<script>" + 
-			"INSERT INTO book (" + COLUMNS + ") VALUES " + 
+			"INSERT INTO test_book (" + COLUMNS + ") VALUES " + 
 			"<foreach collection = \"pos\" item = \"item\" index = \"index\" separator = \",\">" + 
 				"(#{item.id},#{item.bookName},#{item.author},#{item.total},#{item.price},#{item.introduction},#{item.creationTime})" + 
 			"</foreach>" + 
@@ -69,7 +69,7 @@ public interface BookDao {
 	 * @return
 	 */
 	@Update(
-		"UPDATE book SET book_name = #{bookName}, author = #{author}, total = #{total}, " + 
+		"UPDATE test_book SET book_name = #{bookName}, author = #{author}, total = #{total}, " + 
 		"price = #{price}, introduction = #{introduction} WHERE id = #{id}"
 	)
 	int update(BookPO po);
@@ -81,7 +81,7 @@ public interface BookDao {
 	 */
 	@Update(
 		"<script>" + 
-			"UPDATE book SET " + 
+			"UPDATE test_book SET " + 
 			"<trim prefix = \"book_name = CASE id\" suffix = \"END,\">" + 
 				"<foreach collection = \"pos\" item = \"item\" index = \"index\">" + 
 					"<if test = \"item.bookName != null\"> WHEN #{item.id} THEN #{item.bookName}</if>" + 
@@ -120,7 +120,7 @@ public interface BookDao {
 	 * @param id
 	 * @return
 	 */
-	@Delete("DELETE FROM book WHERE id = #{id}")
+	@Delete("DELETE FROM test_book WHERE id = #{id}")
 	int deleteById(@Param("id") Integer id);
 	
 }

@@ -1,5 +1,9 @@
 package com.yan.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -11,15 +15,18 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  *
  */
 @Configuration
-public class RedisConfig {
-
+public class RedisConfig extends CachingConfigurerSupport {
+	
+	@Autowired
+	private RedisConnectionFactory redisConnectionFactory;
+	
 	/**
 	 * redis连接配置
 	 * @param redisConnectionFactory
 	 * @return
 	 */
 	@Bean
-	public StringRedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+	public StringRedisTemplate redisTemplate() {
 		// 创建连接对象
 		StringRedisTemplate template = new StringRedisTemplate();
 		
@@ -30,6 +37,22 @@ public class RedisConfig {
 		template.setEnableTransactionSupport(true);
 		
 		return template;
+	}
+
+	@Bean
+	@Override
+	public KeyGenerator keyGenerator() {
+		// TODO Auto-generated method stub
+		return super.keyGenerator();
+	}
+	
+	@Bean
+	@Override
+	public CacheManager cacheManager() {
+//		RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration,
+//		boolean allowInFlightCacheCreation
+//		return new RedisCacheManager(redisTemplate(), );
+		return null;
 	}
 
 }
