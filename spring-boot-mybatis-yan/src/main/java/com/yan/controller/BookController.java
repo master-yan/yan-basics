@@ -38,7 +38,7 @@ public class BookController {
 	 * @return
 	 */
 	@GetMapping(
-		value = "/book/queryAll/{pageNumber:[0-9]\\\\d*}/{pageSize:[0-9]\\\\d*}", 
+		value = "/book/queryAll/{pageNumber:[0-9]\\d*}/{pageSize:[0-9]\\d*}", 
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseGenericityVO<BasicListResponseGenericityVO<BookVO>> selectAll(

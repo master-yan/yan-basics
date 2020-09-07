@@ -38,7 +38,7 @@ public class CupController {
 	 * @return
 	 */
 	@GetMapping(
-		value = "/cup/queryAll/{pageNumber:[0-9]\\\\\\\\d*}/{pageSize:[0-9]\\\\\\\\d*}", 
+		value = "/cup/queryAll/{pageNumber:[0-9]\\d*}/{pageSize:[0-9]\\d*}", 
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseGenericityVO<BasicListResponseGenericityVO<CupVO>> selectAll(

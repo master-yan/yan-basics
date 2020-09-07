@@ -36,7 +36,7 @@ public class RedisCacheController {
 	 * @return
 	 */
 	@GetMapping(
-		value = "/cache/queryAll/{pageNumber:[0-9]\\\\d*}/{pageSize:[0-9]\\\\d*}", 
+		value = "/cache/queryAll/{pageNumber:[0-9]\\d*}/{pageSize:[0-9]\\d*}", 
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
 	public BasicResponseGenericityVO<BasicListResponseGenericityVO<SweetsVO>> selectAll(
