@@ -51,8 +51,8 @@ public class RedisConfig extends CachingConfigurerSupport {
 	public CacheManager cacheManager() {
 //		RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration,
 //		boolean allowInFlightCacheCreation
-//		搞到这，明天要研究下spring boot自带的缓存
-//		return new RedisCacheManager(redisTemplate(), );
+		搞到这，明天要研究下spring boot自带的缓存
+		return new RedisCacheManager(redisTemplate(), );
 		return null;
 	}
 

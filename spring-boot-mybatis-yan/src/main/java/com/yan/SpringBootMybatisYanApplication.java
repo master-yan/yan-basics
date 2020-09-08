@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.EnableCaching;
 /**
  * application - spring boot启动类
  * @SpringBootApplication - spring boot启动配置
- * @EnableCaching - spring boot开启缓存
+ * @EnableCaching - spring boot cache配置，开启缓存
  * @MapperScan - mybatis扫描配置
  * @author master-yan
  *
