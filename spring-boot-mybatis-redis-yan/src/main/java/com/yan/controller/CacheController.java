@@ -25,7 +25,7 @@ import com.yan.service.CacheService;
  *
  */
 @RestController
-@CacheConfig(cacheNames = "cacheTest")
+@CacheConfig(cacheManager = "redisCacheManager", cacheNames = "cacheTest")
 public class CacheController {
 
 	@Autowired
@@ -49,6 +49,7 @@ public class CacheController {
 	 * @return
 	 */
 	@Cacheable(
+		cacheManager = "redisCacheManager", 
 		cacheNames = "cacheTest", 
 		condition = "#condition == true", 
 		key = "#bookName"
@@ -70,6 +71,7 @@ public class CacheController {
 	 * @return
 	 */
 	@Cacheable(
+		cacheManager = "redisCacheManager", 
 		cacheNames = "cacheTest", 
 		key = "#bookName", 
 		unless = "true"
@@ -94,6 +96,7 @@ public class CacheController {
 	 * @return
 	 */
 	@CacheEvict(
+		cacheManager = "redisCacheManager", 
 		cacheNames = "cacheTest",
 		key = "#bookName", 
 		allEntries = false, 
@@ -115,6 +118,7 @@ public class CacheController {
 	 * @return
 	 */
 	@CachePut(
+		cacheManager = "redisCacheManager", 
 		cacheNames = "cacheTest", 
 		key = "#bookName"
 	)
@@ -135,13 +139,13 @@ public class CacheController {
 	 */
 	@Caching(
 		cacheable = {
-			@Cacheable(cacheNames = "cacheTest", key = "#bookName")
+			@Cacheable(cacheManager = "redisCacheManager", cacheNames = "cacheTest", key = "#bookName")
 		}, 
 		put = {
-			@CachePut(cacheNames = "cacheTest", key = "#bookName")
+			@CachePut(cacheManager = "redisCacheManager", cacheNames = "cacheTest", key = "#bookName")
 		}, 
 		evict = {
-			@CacheEvict(cacheNames = "cacheTest", key = "#bookName", allEntries = false, beforeInvocation = true)
+			@CacheEvict(cacheManager = "redisCacheManager", cacheNames = "cacheTest", key = "#bookName", allEntries = false, beforeInvocation = true)
 		}
 	)
 	@GetMapping(

@@ -13,8 +13,8 @@ import org.springframework.cache.annotation.EnableCaching;
  * @author master-yan
  *
  */
-@EnableCaching
 @SpringBootApplication
+@EnableCaching
 @MapperScan("com.yan.dao")
 public class SpringBootMybatisRedisYanApplication {
 

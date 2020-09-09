@@ -1,5 +1,7 @@
 package com.yan.entity;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
@@ -7,8 +9,13 @@ import lombok.Data;
  * @author master-yan
  */
 @Data
-public class BasicResponseVO {
+public class BasicResponseVO implements Serializable {
 
+	/**
+	 * 序列化id
+	 */
+	private static final long serialVersionUID = -202009091023L;
+	
     /**
      * 响应编号
      */

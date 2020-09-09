@@ -1,5 +1,6 @@
 package com.yan.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -20,8 +21,13 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "test_cup")
-public class CupPO {
+public class CupPO implements Serializable {
 
+	/**
+	 * 序列化id
+	 */
+	private static final long serialVersionUID = -202009091027L;
+	
 	/**
 	 * id
 	 */

@@ -1,5 +1,6 @@
 package com.yan.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -22,7 +23,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CupVO {
+public class CupVO implements Serializable {
+	
+	/**
+	 * 序列化id
+	 */
+	private static final long serialVersionUID = -202009091027L;
 
 	/**
 	 * id

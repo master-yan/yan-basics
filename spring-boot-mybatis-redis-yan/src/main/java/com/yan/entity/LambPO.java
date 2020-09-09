@@ -1,5 +1,6 @@
 package com.yan.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
@@ -14,12 +15,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LambPO implements java.io.Serializable {
+public class LambPO implements Serializable {
 
 	/**
 	 * 序列化id
 	 */
-	private static final long serialVersionUID = -1L;
+	private static final long serialVersionUID = -202009091026L;
 
 	/**
 	 * id

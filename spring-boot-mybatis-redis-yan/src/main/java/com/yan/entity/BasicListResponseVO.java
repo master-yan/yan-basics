@@ -1,5 +1,6 @@
 package com.yan.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,9 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BasicListResponseVO {
+public class BasicListResponseVO implements Serializable {
 
-    /**
+	/**
+	 * 序列化id
+	 */
+	private static final long serialVersionUID = -202009091020L;
+
+	/**
      * 列表内容
      */
     private List<?> content;

@@ -1,5 +1,6 @@
 package com.yan.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -15,14 +16,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * vo - 糖果
+ * vo - 书本
  * @author master-yan
  *
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SweetsVO {
+public class BookVO implements Serializable {
+	
+	/**
+	 * 序列化id
+	 */
+	private static final long serialVersionUID = -202009091024L;
 
 	/**
 	 * id
@@ -31,17 +37,17 @@ public class SweetsVO {
 	private Integer id;
 	
 	/**
-	 * 糖果名
+	 * 书名
 	 */
-	private String sweetName;
+	private String bookName;
 	
 	/**
-	 * 品牌
+	 * 作者
 	 */
-	private String brand;
+	private String author;
 	
 	/**
-	 * 总数量(包)
+	 * 总数量(册)
 	 */
 	@Min(value = 1, message = "销售状态最小值为1")
 	@Max(value = 1000, message = "销售状态最大值为1000")
@@ -51,6 +57,11 @@ public class SweetsVO {
 	 * 售价
 	 */
 	private BigDecimal price;
+	
+	/**
+	 * 介绍
+	 */
+	private String introduction;
 	
 	/**
 	 * 创建时间

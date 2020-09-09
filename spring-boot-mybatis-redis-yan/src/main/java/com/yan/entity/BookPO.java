@@ -1,5 +1,6 @@
 package com.yan.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -13,14 +14,19 @@ import javax.persistence.Table;
 import lombok.Data;
 
 /**
- * po - 糖果
+ * po - 书本
  * @author master-yan
  *
  */
 @Data
 @Entity
-@Table(name = "test_sweet")
-public class SweetsPO {
+@Table(name = "test_book")
+public class BookPO implements Serializable {
+	
+	/**
+	 * 序列化id
+	 */
+	private static final long serialVersionUID = -202009091025L;
 
 	/**
 	 * id
@@ -31,16 +37,16 @@ public class SweetsPO {
 	private Integer id;
 	
 	/**
-	 * 糖果名称
+	 * 书名
 	 */
-	@Column(name = "sweet_name")
-	private String sweetName;
+	@Column(name = "book_name")
+	private String bookName;
 	
 	/**
-	 * 品牌
+	 * 作者
 	 */
-	@Column(name = "brand")
-	private String brand;
+	@Column(name = "author")
+	private String author;
 	
 	/**
 	 * 总数量
@@ -53,6 +59,12 @@ public class SweetsPO {
 	 */
 	@Column(name = "price")
 	private BigDecimal price;
+	
+	/**
+	 * 介绍
+	 */
+	@Column(name = "introduction")
+	private String introduction;
 	
 	/**
 	 * 创建时间
