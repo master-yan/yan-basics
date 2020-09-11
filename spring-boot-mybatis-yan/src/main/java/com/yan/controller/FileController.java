@@ -1,15 +1,16 @@
 package com.yan.controller;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,36 +71,30 @@ public class FileController {
 	 * @throws IOException 
 	 */
     @GetMapping("/file/download/{fileName}")
-    public void downloadFile(@PathVariable("fileName")String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (fileName != null) {
-            //设置文件路径
-            File file = new File(filePath, fileName);
-            
-            if (file.exists()) {
-            	// 设置强制下载不打开
-                response.setContentType("application/force-download");
-                // 设置文件名
-                response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
-                byte[] buffer = new byte[1024];
-                FileInputStream fileInputStream = new FileInputStream(file);
-                BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-                OutputStream outputStream = response.getOutputStream();
-                try {
-                    int i = bufferedInputStream.read(buffer);
-                    while (i != -1) {
-                        outputStream.write(buffer, 0, i);
-                        i = bufferedInputStream.read(buffer);
-                    }
-                } finally {
-                    if (bufferedInputStream != null) {
-                        bufferedInputStream.close();
-                    }
-                    if (fileInputStream != null) {
-                    	fileInputStream.close();
-                    }
-                }
-            }
-        }
+    public void downloadFile(
+		@PathVariable("fileName") String fileName, 
+		HttpServletRequest request, 
+		HttpServletResponse response
+	) throws IOException {
+		if (fileName != null) {
+			//设置文件路径
+			File file = new File(filePath, fileName);
+			
+			if (file.exists()) {
+				try (
+					InputStream input = new FileInputStream(file);
+					OutputStream output = response.getOutputStream();
+				) {
+					// 设置强制下载不打开
+					response.setContentType("application/force-download");
+					// 设置文件名
+					response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
+					
+					IOUtils.copy(input, output);
+					output.flush();
+				}
+			}
+		}
     }
     
     /**
@@ -111,37 +106,31 @@ public class FileController {
      * @throws IOException
      */
     @GetMapping("/file/browse/{fileName}")
-    public void browseFile(@PathVariable("fileName")String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (fileName != null) {
-            //设置文件路径
-            File file = new File(filePath, fileName);
-            
-            if (file.exists()) {
-            	// 获取后缀名
+    public void browseFile(
+		@PathVariable("fileName") String fileName, 
+		HttpServletRequest request, 
+		HttpServletResponse response
+	) throws IOException {
+    	if (fileName != null) {
+			// 设置文件路径
+			File file = new File(filePath, fileName);
+			
+			if (file.exists()) {
+				// 获取后缀名
             	String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-            	// 设置返回值类型,如果要支持图片以外的文件,可能需要个枚举
-                response.setContentType("image/" + suffix);
-                // 设置文件名
-                response.addHeader("Content-Disposition", "inline;fileName=" + fileName);
-                byte[] buffer = new byte[1024];
-                FileInputStream fileInputStream = new FileInputStream(file);
-                BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-                OutputStream outputStream = response.getOutputStream();
-                try {
-                    int i = bufferedInputStream.read(buffer);
-                    while (i != -1) {
-                        outputStream.write(buffer, 0, i);
-                        i = bufferedInputStream.read(buffer);
-                    }
-                } finally {
-                    if (bufferedInputStream != null) {
-                        bufferedInputStream.close();
-                    }
-                    if (fileInputStream != null) {
-                    	fileInputStream.close();
-                    }
-                }
-            }
+				try (
+					InputStream input = new FileInputStream(file);
+					OutputStream output = response.getOutputStream();
+				) {
+					// 设置返回值类型，如果要支持图片以外的文件，可能需要个枚举
+	                response.setContentType("image/" + suffix);
+					// 设置文件名
+					response.addHeader("Content-Disposition", "inline;fileName=" + fileName);
+					
+					IOUtils.copy(input, output);
+					output.flush();
+				}
+			}
         }
     }
 	
