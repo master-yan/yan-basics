@@ -9,7 +9,7 @@ import com.yan.interceptor.MyInterceptor;
 
 /**
  * 拦截器配置
- * @Configuration spring boot配置把该class设置为spring的配置
+ * @Configuration spring boot配置，把该class设置为spring的配置
  * @author master-yan
  *
  */
